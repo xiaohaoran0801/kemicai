@@ -1,17 +1,84 @@
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 .App {
   text-align: center;
 }
-.my-drawer {
-  position: relative;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
+.login{
+  position: absolute;
+  top: 45px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.my-drawer .am-drawer-sidebar {
-  background-color: #fff;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
+.userInfo,.loginBTN{
+  width: 90%;
+  height: 56px;
+  border: none;
+  outline: none;
+  margin-bottom: 20px;
+  font-size: 17px;
 }
-.my-drawer .am-drawer-sidebar .am-list {
-  width: 300px;
-  padding: 0;
+.loginBTN{
+  background: rgb(192, 55, 55);
+  border-radius: 5px;
+  color: white;
+  line-height: 56px;
+  font-size: 25px;
+}
+.loginBottom{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+}
+.gameInfo{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.gameIcon{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.gameIcon img{
+  width: 100%;
+  height: 100%;
+}
+.gameName{
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.Home{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.Home>div{
+  width: 50%;
+  height: 88px;
+}
+.Register{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

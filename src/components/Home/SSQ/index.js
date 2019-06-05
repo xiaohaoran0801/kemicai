@@ -1,9 +1,9 @@
 import React,{Component} from 'react'
-class Login extends Comment{
+class Ssq extends Component{
     render(){
         return(
-            <div>登录</div>
+            <div>双色球</div>
         )
     }
 }
-export default Login
+export default Ssq
