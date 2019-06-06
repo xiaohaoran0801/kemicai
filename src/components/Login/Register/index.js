@@ -18,22 +18,30 @@ class Register extends Component{
         }
     }
     goBack=()=>{
-      this.props.history.go(-1)
+      this.props.history.go(-1);
+      // this.props.changeNav();
     }
     register=()=>{
-      axios.post('http://localhost:3000/register',{userInfo:this.state.userInfo})
+      var userInfo = this.state.userInfo
+      let _this = this
+      axios.post('http://localhost:3000/webapp/account/register',userInfo)
       .then((resp)=>{
-        console.log(resp)
+        if(resp.success){
+          Toast.success('注册成功!',1);
+          _this.goBack()
+        }else{
+          Toast.fail("注册失败",1)
+        }
       })
     }
     onPhoneErrorClick = () => {
         if (this.state.hasError4) {
-          Toast.info('请输入11位电话号码');
+          Toast.info('手机号码格式不正确');
         }
     }
     onUsernameErrorClick = () => {
         if (this.state.hasError1) {
-          Toast.info('用户名长度为6到12个字符');
+          Toast.info('用户名长度为3到6个字符');
         }
     }
     onEmailErrorClick = () => {
@@ -48,23 +56,24 @@ class Register extends Component{
     }
 
     checkPhone = (value) => {
-        if (value.replace(/\s/g, '').length < 11) {
-          this.setState({
-            hasError4: true,
-          });
-        } else {
-          this.setState({
-            hasError4: false,
-          });
-        }
-        let userInfo = this.state.userInfo
-        userInfo.phone = value
+      var reg = new RegExp("^[1][3,4,5,7,8][0-9]{9}$")
+      if (!reg.test(value)) {
         this.setState({
-          userInfo
+          hasError4: true,
         });
+      } else {
+        this.setState({
+          hasError4: false,
+        });
+      }
+      let userInfo = this.state.userInfo
+      userInfo.phone = value
+      this.setState({
+        userInfo
+      });
     }
     checkUsername = (value) => {
-        if (value.length<6||value.length>12) {
+        if (value.length<3||value.length>6) {
           this.setState({
             hasError1: true,
           });
@@ -120,7 +129,6 @@ class Register extends Component{
         this.props.changeNav({leftContent})
     }
     render(){
-        console.log(this.props)
         return(
             <div className='Register'>
                 <List>
@@ -149,7 +157,7 @@ class Register extends Component{
                         value={this.state.userInfo.email}
                     >邮箱</InputItem>
                     <InputItem
-                        type="phone"
+                        type="number"
                         placeholder="请输入你的手机号"
                         error={this.state.hasError4}
                         onErrorClick={this.onPhoneErrorClick}

@@ -1,0 +1,1 @@
+export const LOAD_DATA_ASYCN = "LOAD_DATA_ASYNC"

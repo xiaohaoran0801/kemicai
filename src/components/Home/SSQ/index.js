@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import { func } from 'prop-types';
+import {Icon} from 'antd-mobile'
 const getArr = (count)=>{
     let arr = new Array(count)
     arr = arr.join(',').split(',')
@@ -41,12 +41,16 @@ class Ssq extends Component{
             blueBall:blueBall
         })
     }
+    goBack=()=>{
+        this.props.history.go(-1)
+        this.props.changeNav()
+    }
     shake=()=>{
         if(window.DeviceMotionEvent){
             var _this = this;
             var speed = 25;
-            var x,y,lastX,lastY,lastZ;
-            x=y=lastX=lastY=lastZ=0;
+            var x,y,lastX,lastY;
+            x=y=lastX=lastY=0;
             window.addEventListener('devicemotion',function(event){
                 var acceleration = event.accelerationIncludingGravity
                 x = acceleration.x;
@@ -61,6 +65,11 @@ class Ssq extends Component{
     }
     componentDidMount(){
         this.shake()
+        const leftContent = <div style={{zIndex:100,display:'flex',justifyContent:'center',alignItems:'center'}}
+                                onClick={this.goBack}    
+                                >
+                            <Icon type='left' size='lg'></Icon>返回</div>
+        this.props.changeNav({leftContent})
     }
     render(){
         return(

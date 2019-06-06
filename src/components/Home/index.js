@@ -41,7 +41,7 @@ class Home extends Component{
                     <Switch>
                         {
                             rs.map((item,index)=>{
-                                return <RouteWithSubRoute key={item.name} {...item}></RouteWithSubRoute>
+                                return <RouteWithSubRoute key={item.name} {...item} changeNav={this.props.changeNav}></RouteWithSubRoute>
                             })
                         }
                     </Switch>
