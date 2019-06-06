@@ -1,4 +1,5 @@
 import React,{Component} from 'react'
+import { func } from 'prop-types';
 const getArr = (count)=>{
     let arr = new Array(count)
     arr = arr.join(',').split(',')
@@ -39,6 +40,27 @@ class Ssq extends Component{
             redBalls:redArr,
             blueBall:blueBall
         })
+    }
+    shake=()=>{
+        if(window.DeviceMotionEvent){
+            var _this = this;
+            var speed = 25;
+            var x,y,lastX,lastY,lastZ;
+            x=y=lastX=lastY=lastZ=0;
+            window.addEventListener('devicemotion',function(event){
+                var acceleration = event.accelerationIncludingGravity
+                x = acceleration.x;
+                y = acceleration.y;
+                if(Math.abs(x-lastX)>speed||Math.abs(y-lastY)>speed){
+                    _this.randomNum()
+                }
+                lastX = x;
+                lastY = y;
+            },false)
+        }
+    }
+    componentDidMount(){
+        this.shake()
     }
     render(){
         return(
